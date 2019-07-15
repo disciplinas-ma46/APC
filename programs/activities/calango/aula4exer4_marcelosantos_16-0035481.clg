@@ -1,0 +1,36 @@
+algoritmo menorAltura;
+// Síntese
+//  Objetivo:  Mostrar a menor altura dentre 10 alturas
+//  Entrada :  10 valores de alturas
+//  Saída   :  A menor altura
+
+
+principal
+	// Declarações
+	inteiro auxiliar;
+	real altura, menorAltura;
+
+	// Instruções
+	escreva("Digite o valor da 1° altura: ");
+	leia(altura);
+	enquanto(altura < 0) faca
+		escreva("Valor de altura inválido, digite um valor positivo: ");
+		leia(altura);
+	fimEnquanto
+	menorAltura = altura;
+	auxiliar = 2;
+	enquanto(auxiliar <= 10) faca
+		escreva("Digite o valor da ",auxiliar,"° altura: ");
+		leia(altura);
+		enquanto(altura < 0) faca
+			escreva("Valor de altura inválido, digite um valor positivo: ");
+			leia(altura);
+		fimEnquanto
+		se(altura < menorAltura) entao
+			menorAltura = altura;
+		fimSe
+		auxiliar = auxiliar + 1;
+	fimEnquanto
+	escreva("");
+	escreva("A menor dentre essas alturas é ",menorAltura:4:3);
+fimPrincipal

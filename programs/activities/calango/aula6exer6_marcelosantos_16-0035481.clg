@@ -1,0 +1,188 @@
+algoritmo aula6exer6;
+// Síntese
+//  Objetivo:  Analisar a matricula e o salário de funcionários de uma empresa
+//  Entrada : Quantos funcionários, suas matrículas e salários
+//  Saída   : O maior e o menor salário dos funcionários cadastrados, e matrículas em ordem crescente
+
+
+principal
+	// Declarações
+	inteiro nroFuncionarios;        //CONSTANTE
+	real maior;        //CONSTANTE
+	real menor;        //CONSTANTE
+	inteiro aux, funcionarios, matricula[100];
+	real salario[100];
+
+	// Instruções
+	menor = 500000000;
+	maior = 0;
+	nroFuncionarios = 100;
+	escreva("Digite a quantidade de funcionários: ");
+	leia(funcionarios);
+	funcionarios = validaFuncionarios(funcionarios, nroFuncionarios);
+	para (aux de 0 ate funcionarios-1 passo 1) faca
+		escreva("Digite a matrícula do ",aux+1,"º funcionário: ");
+		leia(matricula[aux]);
+		validaMatricula(matricula, aux);
+		escreval("Digite o sálario do ",aux+1,"º funcionário: ");
+		leia(salario[aux]);
+		salario[aux]=validaSalario(salario[aux]);
+	fimPara
+	limpaTela();
+	mostraResultado(funcionarios, matricula, salario, maior, menor);
+
+fimPrincipal
+
+//==================  SUBALGORITMOS  =========================
+
+// Síntese
+//  Objetivo:  Validar a quantidade de funcionários informada
+//  Parâmetros: Quantidade de funcionários e número máximo de funcionários
+//  Retorno  : Quantidade de funcionários válida
+funcao inteiro validaFuncionarios(inteiro funcionarios, inteiro maximo)
+	//Instruções locais
+	enquanto((funcionarios <= 0) ou (funcionarios > maximo))faca
+		escreval("");
+		escreval("Quantidade inválida. Digite um número maior que 0 e menor ou igual a ",maximo);
+		leia(funcionarios);
+	fimEnquanto
+	limpaTela();
+	retorna funcionarios;
+fimFuncao
+
+// Síntese
+//  Objetivo:  Validar a matrícula informada
+//  Parâmetros: Matrículas e de qual funcionário é a matrícula
+//  Retorno  : Nenhum
+procedimento validaMatricula(inteiro matricula[], inteiro aux)
+	//Declarações locais
+	inteiro contador;
+	logico matriculaInvalida;
+	//Instruções
+	matriculaInvalida = verdadeiro;
+	enquanto (matriculaInvalida) faca
+		enquanto(matricula[aux] <= 0)faca
+			escreva("");
+			escreva("Matrícula inválida. Digite um número maior que 0: ");
+			leia(matricula[aux]);
+		fimEnquanto
+		contador = 0;
+		enquanto((matricula[aux] != matricula[contador]) e (contador < aux))faca
+			contador = contador + 1;
+		fimEnquanto
+		se (contador != aux) entao
+			escreva("");
+			escreva("Matrícula repetida. Digite um valor diferente: ");
+			leia(matricula[aux]);
+		senao
+			matriculaInvalida = falso;
+		fimSe
+	fimEnquanto
+	limpaTela();
+fimProcedimento
+
+// Síntese
+//  Objetivo:  Ordena as matrículas em ordem crescente
+//  Parâmetros: Matrículas, salários e quantidade de funcionários
+//  Retorno  :Sem retorno
+procedimento ordenaMatricula(inteiro funcionarios,inteiro matricula[], real salario[])
+	//Declarações locais
+	inteiro aux, indice, auxiliarTrocaMatricula, auxiliarTrocaSalario;
+	//Instruções
+	para(aux de 0 ate funcionarios-2 passo 1)faca
+		para(indice de aux+1 ate funcionarios-1 passo 1)faca
+			se(matricula[aux] > matricula[indice])entao
+				auxiliarTrocaMatricula = matricula[aux];
+				auxiliarTrocaSalario = salario[aux];
+				
+				matricula[aux] = matricula[indice];
+				salario[aux] = salario[indice];
+				
+				matricula[indice] = auxiliarTrocaMatricula;
+				salario[indice] = auxiliarTrocaSalario;
+			fimSe
+		fimPara
+	fimPara
+fimProcedimento
+
+// Síntese
+//  Objetivo:  Validar o salário informado
+//  Parâmetros: Salário
+//  Retorno  : Salário válido
+funcao real validaSalario(real salario)
+	//Instruções locais
+	enquanto(salario<=0 ou salario>500000000)faca
+		escreval("Número inválido. Digite um número maior que 0 e menor que 500000000:");
+		leia(salario);
+	fimEnquanto
+	limpaTela();
+	retorna salario;
+fimFuncao
+
+// Síntese
+//  Objetivo:  Procurar pelo maior salário informado
+//  Parâmetros:Salários e quantidade de funcionários
+//  Retorno  :Salário maior
+funcao real maiorSalario(real salario[], inteiro funcionarios, real maior)
+	//Declarações locais
+	inteiro aux;
+	//Instruções locais
+	para(aux de 0 ate funcionarios-1 passo 1)faca
+		se(salario[aux] > maior)entao
+			maior = salario[aux];
+		fimSe
+	fimPara
+	retorna maior;
+fimFuncao
+
+// Síntese
+//  Objetivo:  Procurar pelo menor salário informado
+//  Parâmetros:Salários e quantidade de funcionários
+//  Retorno  :Salário menor
+funcao real menorSalario(real salario[], inteiro funcionarios, real menor)
+	//Declarações locais
+	inteiro aux;
+	//Instruções locais
+	para(aux de 0 ate funcionarios-1 passo 1)faca
+		se(salario[aux] <= menor)entao
+			menor = salario[aux];
+		fimSe
+	fimPara
+	retorna menor;
+fimFuncao
+
+// Síntese
+//  Objetivo:  Mostra dados cadastrados, maior e menor salário, e matrícula em ordem crescente
+//  Parâmetros: Matrículas, salários, quantidade de funcionários
+//  Retorno  : Sem retorno
+procedimento mostraResultado(inteiro funcionarios,inteiro matricula[],real salario[], real maior, real menor)
+	//Declarações locais
+	inteiro aux;
+	caracter continuar;
+	//Instruções
+	maior = maiorSalario(salario, funcionarios, maior);
+	menor = menorSalario(salario, funcionarios, menor);
+	mostraDadosFuncionarios(funcionarios, matricula, salario);
+	escreval("");
+	escreval("Maior salário = R$", maior::2);
+	escreval("Menor salário = R$", menor::2);
+	escreval("");
+	escreval("Pressione qualquer teclar para listar todos os cadastros em ordem crescente de matrícula.");
+	leiaCaracter(continuar);
+	limpaTela();
+	ordenaMatricula(funcionarios, matricula, salario);
+	mostraDadosFuncionarios(funcionarios, matricula, salario);
+fimProcedimento
+
+// Síntese
+//  Objetivo:  Mostrar lista com matrículas e salários dos funcionários
+//  Parâmetros: Matrículas, salários, quantidade de funcionários
+//  Retorno  : Sem retorno
+procedimento mostraDadosFuncionarios(inteiro funcionarios,inteiro matricula[],real salario[])
+	//Declarações locais
+	inteiro aux;
+	//Instruções
+	para(aux de 0 ate funcionarios-1 passo 1)faca
+		escreval("Funcionário de matrícula   ",matricula[aux],"   com salário de   R$",salario[aux]::2);
+	fimPara
+fimProcedimento

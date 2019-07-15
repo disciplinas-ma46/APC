@@ -1,0 +1,15 @@
+algoritmo escrevendoBomdia;
+// Síntese
+//  Objetivo: Mostrar na tela do usuario a mensagem "Bom dia -nome da pessoa-"
+//  Entrada : variavel nome (o usuario que digita e é guardada na variável nome)
+//  Saída   : a mensagem "Bom dia -nome da pessoa-"
+
+
+principal
+	// Declarações
+	texto nome;
+	// Instruções
+	escreva("Qual é seu nome? ");
+	leia(nome);
+	escreval("Bom dia ",nome,"!");
+fimPrincipal

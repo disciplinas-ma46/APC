@@ -1,0 +1,18 @@
+algoritmo impostoDeRenda;
+// Síntese
+//  Objetivo:  calcular imposto de renda com taxa de 27,5%
+//  Entrada :  valor da renda de 2016
+//  Saída   :  valor que pagará de imposto de renda
+
+
+principal
+	// Declarações
+	real renda;
+
+	// Instruções
+	escreva("Qual foi sua renda em 2016? ");
+	leia(renda);
+	escreval("");
+	escreval("Você pagará R$ ", (renda * 0.275):2:2 ," de imposto de renda.");
+
+fimPrincipal

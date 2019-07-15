@@ -1,0 +1,116 @@
+algoritmo calcular;
+// Síntese
+//  Objetivo: Fazer operações matemáticas
+//  Entrada : três valores, dois tipos de operações
+//  Saída   : O resultado e se o número é par ou ímpar
+
+
+principal
+	// Declarações
+	inteiro numero[3];
+	caracter operacao1, operacao2;
+	inteiro resultado, aux;
+
+	// Instruções
+	para (aux de 0 ate 2 passo 1) faca
+		escreva("Digite o ",aux+1,"° número: ");
+		leia(numero[aux]);
+	fimPara
+	pulaLinhas(4);
+	escreval("Digite a 1° operação desejada!");
+	escreva("'+' soma, '-' subtração, '*' multiplicação e '\' divisão: ");
+	leiaCaracter(operacao1);
+	validaOperacao(operacao1);
+	pulaLinhas(4);
+
+	escreval("Digite a 2° operação desejada!");
+	escreva("'+' soma, '-' subtração, '*' multiplicação e '\' divisão: ");
+	leiaCaracter(operacao2);
+	validaOperacao(operacao2);
+
+	limpaTela();
+	se (((operacao1 == '\') e (numero[1] == 0)) ou ((operacao2 == '\') e (numero[2] == 0))) entao
+		escreval("Não foi possível calcular pois uma das operações");
+		escreval("envolve divisão por zero. Veja: ",numero[0]," ",operacao1," ",numero[1]," ",operacao2," ",numero[2]);
+	senao
+		escreval("As operações e o resultado: ",numero[0]," ",operacao1," ",numero[1]," ",operacao2," ",numero[2]," = ",calculaResultado(numero, operacao1, operacao2, resultado));
+		escreval("O resultado ",resultado,parOuImpar(resultado));
+	fimSe
+
+fimPrincipal
+
+
+
+// ========================== SUBALGORITMOS ============================
+
+//  Objetivo:  Validar a operação
+//  Parâmetros : Operação e variável auxiliar
+//  Retorno   : Nenhum
+procedimento validaOperacao(ref caracter operacao)
+	// Instruções
+	enquanto ((operacao != '+') e (operacao != '-') e (operacao != '*') e (operacao != '\')) faca
+		pulaLinhas(1);
+		escreva("Opção inválida! Digite uma operação válida: ");
+		leiaCaracter(operacao);
+	fimEnquanto
+fimProcedimento
+
+//  Objetivo: Pular uma certa quantidade de linhas
+//  Parâmetros : Quantidade de linhas
+//  Retorno   : Nenhum
+procedimento pulaLinhas(inteiro linhas)
+	// Declarações locais
+	inteiro aux;
+	// Instruções
+	para (aux de 1 ate linhas passo 1) faca
+		escreval("");
+	fimPara
+fimProcedimento
+
+//  Objetivo:  Calcula resultado das operações
+//  Parâmetros : vetor de números e operações
+//  Retorno   :  resultado das operações
+funcao inteiro calculaResultado(inteiro numero[], caracter operacao1, caracter operacao2, ref inteiro resultado)
+	// Instruções
+	escolha (operacao1)
+	caso '+'
+		resultado = numero[0] + numero[1];
+		interrompa;
+	caso '-'
+		resultado = numero[0] - numero[1];
+		interrompa;
+	caso '*'
+		resultado = numero[0] * numero[1];
+		interrompa;
+	caso '\'
+		resultado = numero[0] \ numero[1];
+	fimEscolha
+
+	escolha (operacao2)
+	caso '+'
+		resultado = resultado + numero[2];
+		interrompa;
+	caso '-'
+		resultado = resultado - numero[2];
+		interrompa;
+	caso '*'
+		resultado = resultado * numero[2];
+		interrompa;
+	caso '\'
+		resultado = resultado \ numero[2];
+	fimEscolha
+	retorna resultado;
+fimFuncao
+
+//  Objetivo:  Verificar se o resultado é par ou ímpar
+//  Parâmetros : Resultado
+//  Retorno   :  Texto informando se é par ou ímpar
+funcao texto parOuImpar(inteiro resultado)
+	// Instruções
+	se ((resultado % 2) == 0) entao
+		retorna (" é par!");
+	senao
+		retorna (" é ímpar!");
+	fimSe
+fimFuncao
+

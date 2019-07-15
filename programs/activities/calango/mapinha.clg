@@ -1,0 +1,67 @@
+algoritmo semNome;
+// Síntese
+//  Objetivo:
+//  Entrada :
+//  Saída   :
+
+
+principal
+	// Declarações
+	inteiro aux, posicaoX, posicaoY, i, j, raio, a, b;
+	caracter direcao;
+	inteiro tamanhoX;  // CONSTANTE
+	inteiro tamanhoY;  // CONSTANTE
+	inteiro campo[100][100];
+
+	// Instruções
+	raio = 2;
+	a = 0;
+	b = 0;
+	posicaoX = 5;
+	posicaoY = 5;
+	tamanhoX = 100;
+	tamanhoY = 100;
+	para(i de 0 ate tamanhoX-1 passo 1) faca
+		para(j de 0 ate tamanhoY-1 passo 1) faca
+			campo[i][j] = 0;
+		fimPara
+	fimPara
+	campo[posicaoX][posicaoY] = 88;
+	faca
+		printCampo(campo, posicaoX, posicaoY, raio, a, b);
+		leiaCaracter(direcao);
+		//		se (posicaoX > 0 e posicaoX < tamanhoX-1 e posicaoY > 0 e posicaoY < tamanhoY-1) entao
+		campo[posicaoX][posicaoY] = 10;
+		escolha (direcao)
+		caso 'w'
+			posicaoX = posicaoX - 1;
+			interrompa;
+		caso 'a'
+			posicaoY = posicaoY - 1;
+			interrompa;
+		caso 's'
+			posicaoX = posicaoX + 1;
+			interrompa;
+		caso 'd'
+			posicaoY = posicaoY + 1;
+		fimEscolha
+		campo[posicaoX][posicaoY] = 99;
+		//		fimSe
+	enquanto (direcao != 'm');
+
+fimPrincipal
+
+procedimento printCampo(inteiro campo[][100], inteiro tamanhoX, inteiro tamanhoY, inteiro raio, inteiro a, inteiro b)
+	inteiro i, j;
+	limpaTela();
+	para(i de 0 ate tamanhoX-1 passo 1) faca
+		para(j de 0 ate tamanhoY-1 passo 1) faca
+			se (exp(i-a,2) + exp(i-b,2) == raio*raio) entao
+				escreva(/*campo[i][j]*/"x ");
+			senao
+				escreva(/*campo[i][j]*/"- ");
+			fimSe
+		fimPara
+		escreval("");
+	fimPara
+fimProcedimento

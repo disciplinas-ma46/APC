@@ -1,0 +1,26 @@
+algoritmo restoEQuociente;
+// Síntese
+//  Objetivo:  mostrar o resto e o quociente de dois valores inteiros cedidos pelo usuário
+//  Entrada : dois valores inteiros
+//  Saída   : o resto e o quociente dos valores
+
+
+principal
+	// Declarações
+    inteiro numero1, numero2, resto, quociente;
+
+    
+	// Instruções
+	escreva("digite o primeiro número: ");
+    leia(numero1);
+    
+    escreva("digite o segundo número: ");
+    leia(numero2);
+    
+    resto = numero1 mod numero2;
+    quociente = numero1 / numero2;
+    escreval("");
+	escreval("O resto   desses   números é:  ", resto);
+	escreval("O quociente desses números é:  ", quociente);
+
+fimPrincipal

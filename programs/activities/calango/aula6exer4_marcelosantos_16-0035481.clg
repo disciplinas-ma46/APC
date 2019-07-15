@@ -1,0 +1,44 @@
+algoritmo aula6exer4;
+// Síntese
+//  Objetivo:  Verificar a existência de elementos de um vetor iguais a 120
+//  Entrada :  80 valores
+//  Saída   :  quantos elementos são iguais a 120 e suas posições
+
+
+principal
+	// Declarações
+	inteiro tamanhoVetor; //CONSTANTE
+	inteiro aux, quantidade;
+	logico temElemento120;
+	real vetor[80];
+
+	// Instruções
+	tamanhoVetor = 80;
+	para (aux de 0 ate tamanhoVetor-1 passo 1) faca
+		escreva("Digite o ",aux+1,"° elemento para o vetor: ");
+		leia(vetor[aux]);
+	fimPara
+	escreval("");
+	temElemento120 = falso;
+	para (aux de 0 ate tamanhoVetor-1 passo 1) faca
+		se (vetor[aux] == 120) entao
+			temElemento120 = verdadeiro;
+			interrompa;
+		fimSe
+	fimPara
+	quantidade = 0;
+	se (temElemento120) entao
+		escreval("Elementos do vetor que são iguais a 120:");
+		para (aux de 0 ate tamanhoVetor-1 passo 1) faca
+			se (vetor[aux] == 120) entao
+				escreval(aux+1,"° elemento");
+				quantidade = quantidade + 1;
+			fimSe
+		fimPara
+		escreval("Dando o total de ", quantidade," elementos");
+	senao
+		escreval("Nenhum elemento do vetor é igual a 120:");
+	fimSe
+
+fimPrincipal
+

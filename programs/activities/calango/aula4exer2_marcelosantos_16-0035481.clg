@@ -1,0 +1,33 @@
+algoritmo multiplicacao;
+// Síntese
+//  Objetivo:  Calcular resultado da multiplicação de dois números usando a operação soma
+//  Entrada :  Dois números
+//  Saída   :  Resultado da multiplicação dos dois números
+
+
+principal
+	// Declarações
+	inteiro numero1, numero2, resultado, auxiliar;
+
+	// Instruções
+	escreva("Digite o primeiro número: ");
+	leia(numero1);
+	limpaTela();
+	escreva("Digite o segundo número: ");
+	leia(numero2);
+	limpaTela();
+	resultado = 0;
+	se(numero1 != 0 e numero2 != 0) entao
+		se(numero2 < 0) entao
+			para (auxiliar de 1 ate numero2*(-1) passo 1) faca
+				resultado = resultado + numero1;
+			fimPara
+			resultado = resultado * (-1);  //como o numero2 é negativo, então troca-se o sinal do resultado
+		senao
+			para (auxiliar de 1 ate numero2 passo 1) faca
+				resultado = resultado + numero1;
+			fimPara
+		fimSe
+	fimSe
+	escreva("A multiplicação de  ",numero1,"  e  ",numero2,"  vale  ",resultado);
+fimPrincipal

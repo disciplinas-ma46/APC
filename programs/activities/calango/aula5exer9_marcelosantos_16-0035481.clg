@@ -1,0 +1,94 @@
+algoritmo aula5exer9;
+// Síntese
+// Objetivo: classificar uma pessoa de acordo com a idade
+// Entrada: Ano de nascimento e ano atual
+// Saída: clascificação entre criança, adolescente, jovem, adulto e idoso
+
+principal
+	// Declarações
+	inteiro anoNascimento, anoAtual;
+	caracter controle;
+
+	// Instruções
+	faca
+		escreva("Digite seu ano de nascimento: ");
+		leia(anoNascimento);
+		anoNascimento = validaNascimento(anoNascimento);
+		limpaTela();
+		escreva("Digite o ano atual: ");
+		leia(anoAtual);
+		anoAtual = validaAnoAtual(anoAtual, anoNascimento);
+		limpaTela();
+		calculaIdade(anoAtual, anoNascimento);
+		escreval("");
+		escreva("Digite 'p' para terminar ou outra tecla para continuar o algoritmo: ");
+		leiaCaracter(controle);
+		controle = minusculoCaracter(controle);
+		limpaTela();
+	enquanto (controle != 'p');
+fimPrincipal
+
+
+// ============== SUBALGORITMOS ==============
+
+// Objetivo:   Calcular idade
+// Parâmetros: Ano atual e de nascimento,
+// Retorno:    Ano atual válido
+procedimento calculaIdade(inteiro anoAtual, inteiro anoNascimento)
+	// Declarações locais
+	inteiro idade;
+	texto clascificacao;
+
+	// Instruções
+	idade = anoAtual - anoNascimento;
+	clascificacao = verificaNivel(idade);
+	escreva("Sua idade: ",idade,"   Sua clascificação: ",clascificacao);
+fimProcedimento
+
+// Objetivo:   Clascificar nível de acordo com a idade
+// Parâmetros: Idade
+// Retorno:    Clascificação
+funcao texto verificaNivel(inteiro idade)
+	// Instruções
+	se(idade <= 10)entao
+		retorna ("criança");
+	senao
+		se(idade > 10 e idade < 18)entao
+			retorna ("adolescente");
+		senao
+			se(idade >= 18 e idade < 25)entao
+				retorna ("jovem");
+			senao
+				se(idade >= 25 e idade <= 58)entao
+					retorna ("adulto");
+				senao
+					retorna ("idoso");
+				fimSe
+			fimSe
+		fimSe
+	fimSe
+fimFuncao
+
+// Objetivo:   Validar ano atual
+// Parâmetros: Ano atual e ano de nascimento
+// Retorno:    Ano atual válido
+funcao inteiro validaAnoAtual(inteiro anoAtual, inteiro anoNascimento)
+	// Instruções
+	enquanto (anoAtual <= anoNascimento) faca
+		escreva("Valor inválido! Digite ano atual maior que ano de nascimento: ");
+		leia(anoAtual);
+	fimEnquanto
+	retorna anoAtual;
+fimFuncao
+
+// Objetivo:   Validar ano de nascimento
+// Parâmetros: Ano de nascimento
+// Retorno:    Ano de nascimento válido
+funcao inteiro validaNascimento(inteiro anoNascimento)
+	// Instruções
+	enquanto (anoNascimento <= 1850) faca
+		escreva("Valor inválido! Digite ano de nascimento maior que 1850: ");
+		leia(anoNascimento);
+	fimEnquanto
+	retorna anoNascimento;
+fimFuncao

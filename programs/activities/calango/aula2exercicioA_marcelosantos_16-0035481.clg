@@ -1,0 +1,13 @@
+algoritmo cadastroCliente;
+// Síntese
+//  Objetivo: Permitir o dono da oficina realizar cadastro dos clientes.
+//  Entrada : dados dos clientes (cpf, nome, senha) e dados dos automóveis (número do carro, placa).
+//  Saída   : pode ter como saída por exemplo o perfil de um cliente, suas parcelas a pagar, etc.
+
+
+principal
+	// Declarações
+
+	// Instruções
+
+fimPrincipal

@@ -1,0 +1,45 @@
+algoritmo aula4exer9a;
+// Síntese
+//  Objetivo:  Calcular o aumento dos produtos de uma loja
+//  Entrada :  Preço dos produtos
+//  Saída   :  Os valores do aumento de 10%
+
+
+principal
+	// Declarações
+	inteiro aux;
+	real preco;
+
+	// Instruções
+	escreval("Para os preços digitados, serão mostrados seu aumento com taxa de 10%");
+	escreval("Caso queira encerrar o programa, digite  -1  para o preço");
+	escreval("");
+	aux = 1;
+	preco = 0;
+	enquanto (preco != -1) faca
+		escreva("Digite o preço do ",aux,"° produto: ");
+		leia(preco);
+		validaPreco(preco);
+		se (preco != -1) entao
+			escreval("O ",aux,"° produto teve aumento de R$ ",(preco * 0.1):3:2);
+			escreval("");
+			aux = aux + 1;
+		senao
+			escreval("Programa encerrado!");
+		fimSe
+	fimEnquanto
+
+fimPrincipal
+
+
+//=========== SUBALGORITMO ==========
+//  Objetivo:  Validar o preço dos produtos
+//  Parâmetros :  Preço dos produtos
+//  Retorno   :  Nenhum
+procedimento validaPreco(ref inteiro preco)
+	// Instruções
+	enquanto ((preco <= 0) e (preco != -1)) faca
+		escreva("Preço inválido, digite um valor positivo e maior que 0: ");
+		leia(preco);
+	fimEnquanto
+fimProcedimento

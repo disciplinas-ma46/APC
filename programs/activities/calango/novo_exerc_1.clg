@@ -1,0 +1,107 @@
+algoritmo alunosAprovadosEReprovados;
+// Síntese
+//  Objetivo: Analizar uma turma de alunos
+//  Entrada : Quantidade de alunos e quantos foram aprovados
+//  Saída   : Porcentagem de aprovados e reprovados, quantos alunos foram analizados
+
+
+principal
+	// Declarações
+	caracter controle;
+	inteiro quantidadeAlunos, quantidadeAprovados, semestre, totalAlunosAnalisados;
+
+	// Instruções
+	semestre = 1;
+	totalAlunosAnalisados = 0;
+	faca
+		escreval("Quando quiser finalizar a operação, digite 0 para a quantidade de");
+		escreval("alunos matriculados, e será mostrado o total de alunos analisados!");
+		pulaLinhas(2);
+		escreva("Digite a quantidade de alunos matriculados no ",semestre,"° semestre: ");
+		leia(quantidadeAlunos);
+		validaAlunos(quantidadeAlunos);
+		se (quantidadeAlunos != 0) entao
+			pulaLinhas(2);
+			totalAlunosAnalisados = totalAlunosAnalisados + quantidadeAlunos;
+			escreva("Digite a quantidade de alunos aprovados no ",semestre,"° semestre: ");
+			leia(quantidadeAprovados);
+			validaAprovados(quantidadeAprovados, quantidadeAlunos);
+			limpaTela();
+			mostraRestultados(quantidadeAlunos, quantidadeAprovados, semestre); // mostra resultado
+			pulaLinhas(4);
+			escreva("Digite qualquer tecla para continuar: ");
+			leiaCaracter(controle);
+			semestre = semestre + 1;
+			limpaTela();
+		senao
+			limpaTela();
+			escreval("Operação finalizada!");
+		fimSe
+	enquanto (quantidadeAlunos != 0);
+	pulaLinhas(2);
+	se (totalAlunosAnalisados > 0) entao
+		escreval("Foram analisados um total de ",totalAlunosAnalisados," alunos");
+	senao
+		escreval("Nenhum aluno foi analisado");
+	fimSe
+
+fimPrincipal
+
+// ========================== SUBALGORITMOS ============================
+
+//  Objetivo: Validar a quantidade de alunos
+//  Parâmetros : Quantidade de alunos
+//  Retorno   : Nenhum
+procedimento validaAlunos(ref inteiro quantidadeAlunos)
+	// instruções
+	enquanto (quantidadeAlunos < 0) faca
+		pulaLinhas(1);
+		escreva("Valor inválido! Digite um valor positivo ou 0 para finalizar: ");
+		leia(quantidadeAlunos);
+	fimEnquanto
+fimProcedimento
+
+//  Objetivo: Validar a quantidade de aprovados
+//  Parâmetros : Quantidade de aprovados
+//  Retorno   : Nenhum
+procedimento validaAprovados(ref inteiro quantidadeAprovados, ref inteiro quantidadeAlunos)
+	// instruções
+	enquanto ((quantidadeAprovados < 0) ou (quantidadeAprovados > quantidadeAlunos)) faca
+		pulaLinhas(1);
+		escreval("Valor inválido! Digite um valor maior que zero");
+		escreva("e menor ou igual a quantidade de alunos: ");
+		leia(quantidadeAprovados);
+	fimEnquanto
+fimProcedimento
+
+//  Objetivo: Mostrar o resultado da análize de uma turma
+//  Parâmetros : quantidade de alunos e quantidade de aprovados
+//  Retorno   : Nenhum
+procedimento mostraRestultados(ref inteiro quantidadeAlunos, ref inteiro quantidadeAprovados, ref inteiro semestre)
+	// Declarações locais
+	real porcentagemAprovados;
+	// instruções
+	porcentagemAprovados = fazPorcentagem(quantidadeAlunos, quantidadeAprovados);
+	escreval((porcentagemAprovados)::2,"% dos alunos foram aprovados no ",semestre,"° semestre");
+	escreval((100 - porcentagemAprovados)::2,"% dos alunos foram reprovados no ",semestre,"° semestre");
+fimProcedimento
+
+//  Objetivo: Calcula a porcentagem de aprovados
+//  Parâmetros : Quantidade de alunos e de aprovados
+//  Retorno   : Porcentagem de aprovados
+funcao real fazPorcentagem(ref inteiro quantidadeAlunos, ref inteiro quantidadeAprovados)
+	// instruções
+	retorna ((quantidadeAprovados / quantidadeAlunos) * 100);
+fimFuncao
+
+//  Objetivo: Pular uma certa quantidade de linhas
+//  Parâmetros : Quantidade de linhas
+//  Retorno   : Nenhum
+procedimento pulaLinhas(inteiro linhas)
+	// Declarações locais
+	inteiro aux;
+	// Instruções
+	para (aux de 1 ate linhas passo 1) faca
+		escreval("");
+	fimPara
+fimProcedimento

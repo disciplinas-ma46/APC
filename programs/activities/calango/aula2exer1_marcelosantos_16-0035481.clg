@@ -1,0 +1,24 @@
+algoritmo horas_Em_Minutos_E_Segundos;
+// Síntese
+//  Objetivo:  Recebe um valor inteiro (horas) e mostra em minutos e segundos
+//  Entrada :  um valor inteiro (horas)
+//  Saída   :  dois valores inteiros (minutos e segundos)
+
+
+principal
+	// Declarações
+inteiro horas;
+inteiro minutos;
+inteiro segundos;
+
+	// Instruções
+escreva("digite um valor inteiro (horas): ");
+leia(horas);
+
+minutos = horas * 60;
+segundos = horas * 3600;
+
+escreval(horas, " hora(s) tem ", minutos, " minutos");
+escreval(horas, " hora(s) tem ", segundos, " segundos");
+
+fimPrincipal

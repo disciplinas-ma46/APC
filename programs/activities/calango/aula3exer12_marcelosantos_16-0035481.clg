@@ -1,0 +1,44 @@
+algoritmo informadorDeDDD;
+// Síntese
+//  Objetivo:  Ler um número de DDD e informar a que cidade este pertence.
+//  Entrada :  número de DDD
+//  Saída   :  Mensagem dizendo a que cidade o DDD pertence.
+
+
+principal
+	// Declarações
+	inteiro numeroDDD;
+
+	// Instruções
+	escreva("Digite um número de DDD: ");
+	leia(numeroDDD);
+	limpaTela();
+	escolha(numeroDDD)
+		caso 61
+			escreva("O DDD ", numeroDDD, " pertence à Brasília.");
+			interrompa;
+		caso 71
+			escreva("O DDD ", numeroDDD, " pertence à Salvador.");
+			interrompa;
+		caso 11
+		    escreva("O DDD ", numeroDDD, " pertence à São Paulo.");
+			interrompa;
+		caso 21
+			escreva("O DDD ", numeroDDD, " pertence à Rio de Janeiro.");
+			interrompa;
+		caso 32
+			escreva("O DDD ", numeroDDD, " pertence à Juiz de Fora.");
+			interrompa;
+		caso 19
+			escreva("O DDD ", numeroDDD, " pertence à Campinas.");
+			interrompa;
+		caso 27
+			escreva("O DDD ", numeroDDD, " pertence à Vitória.");
+			interrompa;
+		caso 31
+			escreva("O DDD ", numeroDDD, " pertence à Belo Horizonte.");
+			interrompa;
+		outroCaso
+			escreva("DDD ", numeroDDD, " desconhecido.");
+	fimEscolha
+fimPrincipal

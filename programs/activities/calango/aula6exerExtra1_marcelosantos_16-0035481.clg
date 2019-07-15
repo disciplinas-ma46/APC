@@ -1,0 +1,117 @@
+algoritmo aula6exerExtra1;
+// Síntese
+// Objetivo: Armazenar e analizar até 80 idades
+// Entrada: Idades
+// Saída: média de idades, de quem é e qual é a maior idade
+
+principal
+	// Declarações
+	inteiro idadeLimite; // CONSTANTE
+	inteiro quantidade, idades[80], somaIdades, maiorIdade, aux;
+	caracter controle;
+
+	// Instruções
+	idadeLimite = 125;
+	maiorIdade = 0;
+	somaIdades = 0;
+	escreva("Digite o número de idades a ser cadastrado: ");
+	leia(quantidade);
+	quantidade = validaQuantidade(quantidade);
+	limpaTela();
+	escreval("Atenção! As idades devem ser de 1 até ",idadeLimite);
+	escreval("");
+	para (aux de 0 ate quantidade-1 passo 1) faca
+		escreva("Digite a ", aux + 1,"° idade: ");
+		leia(idades[aux]);
+		idades[aux] = validaIdade(idades[aux], idadeLimite);
+		se (idades[aux] > maiorIdade) entao
+			maiorIdade = idades[aux];
+		fimSe
+		limpaTela();
+	fimPara
+	faca
+		escreval("Digite a opção desejada: ");
+		escreval("1 - Todos registros em ordem crescente");
+		escreval("2 - Maior idade e as pessoas com idade maior");
+		escreval("0 - Sair do algoritmo");
+		leiaCaracter(controle);
+		se (controle == '1') entao
+			idadesOrdemCrescente(idades, quantidade);
+		senao
+			se (controle == '2') entao
+				mostrarMaiorIdade(idades, quantidade, maiorIdade);
+			fimSe
+		fimSe
+	enquanto(controle != '0');
+fimPrincipal
+
+
+
+// ============== SUBALGORITMOS ==============
+
+// Objetivo: Validar quantidade de idades
+// Parâmetros:  quantidade de idades
+// Retorno:   quantidade de idades válida
+funcao inteiro validaQuantidade(inteiro quantidade)
+	// Instruções
+	enquanto ((quantidade <= 0) ou (quantidade > 80)) faca
+		escreva("Quantidade de idades inválida! Digite um valor de 1 até 80: ");
+		leia(quantidade);
+	fimEnquanto
+	retorna quantidade;
+fimFuncao
+
+// Objetivo: Validar idades
+// Parâmetros:  Idade e limite de idade
+// Retorno:   idade válida
+funcao inteiro validaIdade(inteiro idade, inteiro idadeLimite)
+	// Instruções
+	enquanto ((idade <= 0) ou (idade > idadeLimite)) faca
+		escreva("Idade inválida! Digite uma idade de 1 até ",idadeLimite,": ");
+		leia(idade);
+	fimEnquanto
+	retorna idade;
+fimFuncao
+
+// Objetivo: Mostrar idades em ordem crescente
+// Parâmetros:  idades e quantidade de idades
+// Retorno:   Nenhum
+procedimento idadesOrdemCrescente(inteiro idades[], inteiro quantidade)
+	//Declarações locais
+	inteiro aux, indice, auxiliarTrocaIdades;
+	//Instruções
+	limpaTela();
+	escreval("");
+	escreval("Idades em ordem crescente");
+	para(aux de 0 ate quantidade-2 passo 1)faca
+		para(indice de aux+1 ate quantidade-1 passo 1)faca
+			se(idades[aux] > idades[indice])entao
+				auxiliarTrocaIdades = idades[aux];
+				idades[aux] = idades[indice];
+				idades[indice] = auxiliarTrocaIdades;
+			fimSe
+		fimPara
+		escreval("Posição ",aux,": ",idades[aux]," anos");
+	fimPara
+	escreval("Posição ",aux,": ",idades[aux]," anos");
+	escreval("");
+fimProcedimento
+
+// Objetivo: Mostrar maior(es) idade(s)
+// Parâmetros:  idades , quantidade de idades e a maior idade
+// Retorno:   Nenhum
+procedimento mostrarMaiorIdade(inteiro idades[], inteiro quantidade, inteiro maiorIdade)
+	// Declarações
+	inteiro aux;
+	// Instruções
+	limpaTela();
+	escreval("A maior idade encontrada é ",maiorIdade);
+	escreval("");
+	escreval("Posição da(s) maior(es) idade(s): ");
+	para (aux de 0 ate quantidade-1 passo 1) faca
+		se (idades[aux] >= maiorIdade) entao
+			escreval("Idade de posição ",aux);
+		fimSe
+	fimPara
+	escreval("");
+fimProcedimento

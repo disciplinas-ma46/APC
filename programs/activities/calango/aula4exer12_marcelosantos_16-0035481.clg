@@ -1,0 +1,123 @@
+algoritmo concursoDePiadas;
+// Síntese
+//  Objetivo:  Mostrar qual candidato ganhou um concurso de piadas, com base nas notas dos juízes.
+//  Entrada :  Nome dos 3 candidatos, Qantidade de Juízes e Notas dos candidatos.
+//  Saída   :  Quem quanhou o concurso, e sua pontuação.
+
+principal
+	// Declarações
+	texto candidato1, candidato2, candidato3;
+	inteiro notaCandidato1, notaCandidato2, notaCandidato3;
+	inteiro quantidadeJuizes, auxiliar, nota;
+
+	// Instruções
+	escreva("Digite a quantidade de juízes: ");
+	leia(quantidadeJuizes);
+	enquanto(quantidadeJuizes <= 0) faca
+		escreva("Valor inválido! Digite um valor positivo: ");
+		leia(quantidadeJuizes);
+	fimEnquanto
+	limpaTela();
+	escreva("Digite o nome do primeiro candidato: ");
+	leia(candidato1);
+	escreva("Digite o nome do segundo candidato: ");
+	leia(candidato2);
+	escreva("Digite o nome do terceiro candidato: ");
+	leia(candidato3);
+	notaCandidato1 = 0;
+	notaCandidato2 = 0;
+	notaCandidato3 = 0;
+	limpaTela();
+	auxiliar = 1;
+	enquanto(auxiliar <= quantidadeJuizes) faca
+		escreval("Digite a nota de 0 a 100 do ",auxiliar,"° juiz para o candidato ",candidato1);
+		leia(nota);
+		enquanto((nota < 0) ou (nota > 100)) faca
+			escreval("Nota inválido! Digite uma nota de 0 a 100: ");
+			leia(nota);
+		fimEnquanto
+		notaCandidato1 = notaCandidato1 + nota;
+		auxiliar = auxiliar + 1;
+	fimEnquanto
+	limpaTela();
+	auxiliar = 1;
+	enquanto(auxiliar <= quantidadeJuizes) faca
+		escreval("Digite a nota do ",auxiliar,"° juiz para o candidato ",candidato2);
+		leia(nota);
+		enquanto((nota < 0) ou (nota > 100)) faca
+			escreval("Nota inválido! Digite uma nota de 0 a 100: ");
+			leia(nota);
+		fimEnquanto
+		notaCandidato2 = notaCandidato2 + nota;
+		auxiliar = auxiliar + 1;
+	fimEnquanto
+	limpaTela();
+	auxiliar = 1;
+	enquanto(auxiliar <= quantidadeJuizes) faca
+		escreval("Digite a nota do ",auxiliar,"° juiz para o candidato ",candidato3);
+		leia(nota);
+		enquanto((nota < 0) ou (nota > 100)) faca
+			escreval("Nota inválido! Digite uma nota de 0 a 100: ");
+			leia(nota);
+		fimEnquanto
+		notaCandidato3 = notaCandidato3 + nota;
+		auxiliar = auxiliar + 1;
+	fimEnquanto
+	limpaTela();
+	
+	se(notaCandidato1 == notaCandidato2) entao
+		se(notaCandidato1 > notaCandidato3) entao
+			escreval("Os vencedores são: ");
+			escreval(candidato1," com ",notaCandidato1," pontos");
+			escreval(candidato2," com ",notaCandidato2," pontos");
+		senao
+			se(notaCandidato2 == notaCandidato3) entao
+				escreval("Os vencedores são: ");
+				escreval(candidato1," com ",notaCandidato1," pontos");
+				escreval(candidato2," com ",notaCandidato2," pontos");
+				escreval(candidato3," com ",notaCandidato3," pontos");
+			senao
+				escreval("O vencedor é: ");
+				escreval(candidato3," com ",notaCandidato3," pontos");
+			fimSe
+		fimSe
+	senao
+		se(notaCandidato1 == notaCandidato3) entao
+			se(notaCandidato1 > notaCandidato2) entao
+				escreval("Os vencedores são: ");
+				escreval(candidato1," com ",notaCandidato1," pontos");
+				escreval(candidato3," com ",notaCandidato3," pontos");
+			senao
+				escreval("O vencedor é: ");
+				escreval(candidato2," com ",notaCandidato2," pontos");
+			fimSe
+		senao
+			se(notaCandidato2 == notaCandidato3) entao
+				se(notaCandidato2 > notaCandidato1) entao
+					escreval("Os vencedores são: ");
+					escreval(candidato2," com ",notaCandidato2," pontos");
+					escreval(candidato3," com ",notaCandidato3," pontos");
+				senao
+					escreval("O vencedor é: ");
+					escreval(candidato1," com ",notaCandidato1," pontos");
+				fimSe
+			senao
+				escreval("O vencedor é: ");
+				se(notaCandidato1 > notaCandidato2) entao
+					se(notaCandidato1 > notaCandidato3) entao
+						escreval(candidato1," com ",notaCandidato1," pontos");
+					senao
+						escreval(candidato3," com ",notaCandidato3," pontos");
+					fimSe
+				senao
+					se(notaCandidato2 > notaCandidato3) entao
+						escreval(candidato2," com ",notaCandidato2," pontos");
+					senao
+						escreval(candidato3," com ",notaCandidato3," pontos");
+					fimSe
+				fimSe
+			fimSe
+		fimSe
+	fimSe
+
+fimPrincipal

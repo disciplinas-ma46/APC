@@ -1,0 +1,98 @@
+algoritmo calcular;
+// Síntese
+//  Objetivo: Classifica uma organização populacional
+//  Entrada : Nome do lugar e n° de habitantes
+//  Saída   : Cassificação quanto à vila, distrito, cidade ou metrópole
+
+
+principal
+	// Declarações
+	texto lugar;
+	inteiro habitantes;
+	caracter controle;
+
+	// Instruções
+	faca
+		escreva("Digite o nome do lugar: ");
+		leia(lugar);
+		validaLugar(lugar);
+		limpaTela();
+		escreva("Digite a quantidade de habitantes desse lugar: ");
+		leia(habitantes);
+		validaHabitantes(habitantes);
+		apresentaClassificacao(lugar, habitantes);
+		pulaLinhas(2);
+		escreva("Digite 'p' para encerrar ou qualquer outra tecla para continuar: ");
+		leiaCaracter(controle);
+		controle = minusculoCaracter(controle);
+		limpaTela();
+		se (controle == 'p') entao
+			escreval("Operação finalizada!");
+		fimSe
+	enquanto(controle != 'p');
+fimPrincipal
+
+
+// ========================== SUBALGORITMOS ============================
+
+//  Objetivo:  Analisar e Classificar um lugar
+//  Parâmetros : Nome do lugar, quantidade de habitantes
+//  Retorno   : Nenhum
+procedimento apresentaClassificacao(texto lugar, inteiro habitantes)
+	// Instruções
+	limpaTela();
+	se ((habitantes > 0) e (habitantes <= 5000)) entao
+		escreval("O lugar '",lugar,"' com ",habitantes," habitantes, é classificado como Vila");
+		escreval("pois tem de 1 até 5000 habitantes!");
+	senao
+		se ((habitantes > 5000) e (habitantes <= 15000)) entao
+			escreval("O lugar '",lugar,"' com ",habitantes," habitantes, é classificado como Distrito");
+			escreval("pois tem de 5001 até 15000 habitantes!");
+		senao
+			se ((habitantes > 15000) e (habitantes <= 1000000)) entao
+				escreval("O lugar '",lugar,"' com ",habitantes," habitantes, é classificado como Cidade");
+				escreval("pois tem de 15001 até 1000000 habitantes!");
+			senao
+				escreval("O lugar '",lugar,"' com ",habitantes," habitantes, é classificado como Metrópole");
+				escreval("pois tem mais de 1000000 habitantes!");
+			fimSe
+		fimSe
+	fimSe
+fimProcedimento
+
+//  Objetivo: Pular uma certa quantidade de linhas
+//  Parâmetros : Quantidade de linhas
+//  Retorno   : Nenhum
+procedimento pulaLinhas(inteiro linhas)
+	// Declarações locais
+	inteiro aux;
+	// Instruções
+	para (aux de 1 ate linhas passo 1) faca
+		escreval("");
+	fimPara
+fimProcedimento
+
+//  Objetivo: Validar o nome do lugar
+//  Parâmetros : nome do lugar
+//  Retorno   : Nenhum
+procedimento validaLugar(ref texto lugar)
+	// Instruções
+	enquanto (tamanhoTexto(lugar) == 0) faca
+		pulaLinhas(1);
+		escreva("Nome inválido! Digite um nome válido para o lugar: ");
+		leia(lugar);
+	fimEnquanto
+fimProcedimento
+
+//  Objetivo: Validar o número de habitantes
+//  Parâmetros : número de habitantes
+//  Retorno   : Nenhum
+procedimento validaHabitantes(ref inteiro habitantes)
+	// Instruções
+	enquanto (habitantes < 1) faca
+		pulaLinhas(1);
+		escreva("Valor inválido! Digite um valor maior que zero: ");
+		leia(habitantes);
+	fimEnquanto
+fimProcedimento
+

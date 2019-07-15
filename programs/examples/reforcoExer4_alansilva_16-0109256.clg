@@ -1,0 +1,116 @@
+algoritmo reforcoExer4;
+// Síntese
+//  Objetivo: Cadastrar os nomes de professores, suas turmas e media aritmética final dos alunos
+//  Entrada : Nome do professor, quantidade de alunos, media aritmética final de cada aluno
+//  Saída   : Nome do professor, quantidade de turmas cadastradas, media aritmética final da turma, 
+//            quantidade de professores, quantidade de alunos em cada turma
+
+
+principal
+	// Declarações
+	texto nomeProfessor;
+	inteiro qntdTurmas, qntdAlunos, qntdProfessores, aux;
+	caracter continua;
+	real media, mediaAlunos, acumulador;
+	// Instruções
+	qntdProfessores = 1;
+	qntdTurmas = 0;
+	faca
+		escreva("Digite o nome do professor: ");
+		leia(nomeProfessor);
+		nomeProfessor = validaNome(nomeProfessor);
+		faca
+			acumulador = 0;
+			escreva("Digite a quantidade de alunos na ",qntdTurmas+1,"º turma do professor ",nomeProfessor,": ");
+			leia(qntdAlunos);
+			qntdAlunos = validaAlunos(qntdAlunos);
+			para ( aux de 1 ate qntdAlunos passo 1 ) faca
+				escreva("Digite a média final d@ ",aux,"º alun@: ");
+				leia(media);
+				media = validaMedia(media);
+				acumulador = acumulador + media;
+			fimPara
+			limpaTela();
+			mediaAlunos = acumulador / qntdAlunos;
+			mostraResultado (nomeProfessor, qntdAlunos, mediaAlunos);
+			escreval("");
+			escreval("Há uma nova turma deste professor? ");
+			escreva("Digite 'S' para sim ou 'N' para NÃO: ");
+			leiaCaracter(continua);
+			continua = validaCaracter(continua);
+			qntdTurmas = qntdTurmas + 1;
+			limpaTela();
+		enquanto ( continua == 'S');
+		escreval("Existe outro professor para cadastrar suas turmas no semestre atual?");
+		escreva("Digite 'S' para SIM ou 'N' para NÃO: ");
+		leiaCaracter(continua);
+		continua = validaCaracter(continua);
+		se (continua == 'S') entao
+			qntdProfessores = qntdProfessores + 1;
+		fimSe
+	enquanto (continua == 'S');
+	limpaTela();
+	escreval("Número de professores cadastrados = ",qntdProfessores);
+	escreva("Quantidade de turmas cadastradas = ",qntdTurmas);
+	
+fimPrincipal
+//////SUBALGORITMO/////////
+//  Objetivo  : Valida o nome
+//  Parâmetro : Nome
+//  Retorno   : Nome válido
+funcao texto validaNome (texto nome)
+	enquanto ( tamanhoTexto(nome) < 4 ) faca
+		escreva("Nome inválido! Digite pelo menos 4 caracteres para o nome: ");
+		leia(nome);
+	fimEnquanto
+	nome = maiusculo(nome);
+	limpaTela();
+	retorna nome;
+fimFuncao
+
+//  Objetivo  : Valida a quantidade de alunos
+//  Parâmetro : Quantidade de alunos
+//  Retorno   :	Quantidade de alunos válida
+funcao inteiro validaAlunos (inteiro alunos)
+	enquanto ( alunos < 2 ou alunos > 120) faca
+		escreval("Quantidade inválida! Digite um valor entre 2 e 120: ");
+		leia(alunos);
+	fimEnquanto
+	limpaTela();
+	retorna alunos;
+fimFuncao
+
+//  Objetivo  : Validar a media
+//  Parâmetro : Media
+//  Retorno   : Media válida
+funcao real validaMedia (real media)
+	enquanto (media < 0 ou media > 10 ) faca
+		escreva("Média inválida! Digite um valor entre 0 e 10: ");
+		leia(media);
+	fimEnquanto
+	retorna media;
+fimFuncao
+
+//  Objetivo  : Validar caracter
+//  Parâmetro : Caracter
+//  Retorno   : Caracter válido
+funcao caracter validaCaracter (caracter continua)
+	continua = maiusculoCaracter(continua);
+	enquanto (continua != 'S' e continua != 'N') faca
+		escreva("Caracter inválido! Digite somente 'S' ou 'N': ");
+		leiaCaracter(continua);
+		continua = maiusculoCaracter(continua);
+	fimEnquanto
+	limpaTela();
+	retorna continua;
+fimFuncao
+
+//  Objetivo  : Mostrar resultados 
+//  Parâmetro : Nome do professor, quantidade alunos, media final
+//  Retorno   : Sem retorno
+procedimento mostraResultado (texto nomeProfessor, inteiro qntdAlunos, real mediaFinal)
+	limpaTela();
+	escreval("Nome do professor: ",nomeProfessor);
+	escreval("Quantidade de alunos na turma = ",qntdAlunos);
+	escreval("Média aritmética entre todas as médias finais dos alunos = ",mediaFinal::2);
+fimProcedimento

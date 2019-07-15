@@ -1,0 +1,29 @@
+algoritmo calculoDeTermosDeUmaSerie;
+// Síntese
+//  Objetivo:  Calcular n termos da série H = 1 + 1/2 + 1/3 + ... + 1/n.
+//  Entrada :  Número de termos da série.
+//  Saída   :  Soma da série.
+
+
+principal
+	// Declarações
+	inteiro termos, auxiliar;
+	real resultado;
+
+	// Instruções
+	escreva("Digite um valor inteiro positivo: ");
+	leia(termos);
+	enquanto(termos <= 0) faca
+		escreva("Valor inválido! Digite um valor inteiro positivo: ");
+		leia(termos);
+	fimEnquanto
+	auxiliar = 1;
+	resultado = 0;
+	enquanto(auxiliar <= termos) faca
+		resultado = resultado + (1 / auxiliar);
+		auxiliar = auxiliar + 1;
+	fimEnquanto
+	limpaTela();
+	escreval("A soma dos ",termos," primeiros termos da sequência {1/n} vale ",resultado:4:3);
+
+fimPrincipal

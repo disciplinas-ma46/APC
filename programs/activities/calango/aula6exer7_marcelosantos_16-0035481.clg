@@ -1,0 +1,90 @@
+algoritmo aula6exer7;
+// Síntese
+// Objetivo: Cadastrar e calcular aumento do preço de até 100 CD's
+// Entrada: Preço dos CD's e porcentagem do aumento
+// Saída: Novos Preços
+
+principal
+	// Declarações
+	inteiro quantidade; // CONSTANTE
+	inteiro aux, qtdPrecos;
+	real precos[100], percentual;
+	caracter controle;
+
+	// Instruções
+	quantidade = 3;
+	qtdPrecos = 1;
+	faca
+		escreva("Digite o preço do ",qtdPrecos,"° CD: ");
+		leia(precos[qtdPrecos-1]);
+		precos[qtdPrecos-1] = validaPreco(precos[qtdPrecos-1]);
+		escreval("");
+		escreval("Digite 's' para terminar cadastro ou outra tecla para continuar:");
+		leiaCaracter(controle);
+		controle = minusculoCaracter(controle);
+		limpaTela();
+		se ((controle != 's') e (qtdPrecos < quantidade)) entao
+			qtdPrecos = qtdPrecos + 1;
+		senao
+			limpaTela();
+			escreval("Cadastro finalizado!");
+			escreval("");
+			controle = 's';
+		fimSe
+	enquanto((controle != 's') e (qtdPrecos <= quantidade));
+	escreva("Digite 'a' para aumentar os preços em 10% ou outra tecla para escolher o aumento: ");
+	leiaCaracter(controle);
+	controle = minusculoCaracter(controle);
+	se (controle == 'a') entao
+		percentual = 10;
+	senao
+		escreval("Digite o percentual desejado");
+		leia(percentual);
+		validaPercentual(percentual);
+	fimSe
+	percentual = 1 + percentual/100;
+	aumentaPrecos(precos, percentual, qtdPrecos);
+fimPrincipal
+
+
+// ==================== SUBALGORITMOS =====================
+
+// Objetivo: Validar precos dos CD's
+// Parâmetros:  preco do CD
+// Retorno:   preco do CD válido
+funcao real validaPreco(inteiro preco)
+	// Instruções
+	enquanto (preco <= 0) faca
+		escreva("Preço inválido! Digite um preço maior que zero: ");
+		leia(preco);
+	fimEnquanto
+	retorna preco;
+fimFuncao
+
+
+// Objetivo: Calcular aumento dos preços e mostrá-los
+// Parâmetros:  precos, precentual de aumento e quantidade de preços cadastrados
+// Retorno:   Nenhum
+procedimento aumentaPrecos(real precos[], real percentual, inteiro qtdPrecos)
+	// Declarações
+	inteiro aux;
+
+	// Instruções
+	limpaTela();
+	escreval("Todos os preços com aumento de ",((percentual-1)*100)::2,"% :");
+	para (aux de 0 ate qtdPrecos-1 passo 1) faca
+		precos[aux] = precos[aux] * percentual;
+		escreval(aux+1,"° preço: R$ ",precos[aux]::2);
+	fimPara
+fimProcedimento
+
+// Objetivo: Validar percentual
+// Parâmetros:  percentual
+// Retorno:   percentual válido
+procedimento validaPercentual(ref real percentual)
+	// Instruções
+	enquanto (percentual <= 0) faca
+		escreva("Percentual inválido! Digite um valor maior que zero: ");
+		leia(percentual);
+	fimEnquanto
+fimProcedimento

@@ -1,0 +1,25 @@
+algoritmo semNome;
+// Síntese
+//  Objetivo:  
+//  Entrada :
+//  Saída   :
+
+
+principal
+	// Declarações
+	inteiro numDeTermos, aux;
+	real num1, num2, res;
+
+	// Instruções
+	numDeTermos = 1474;
+	num1 = 1;
+	num2 = 1;
+	para (aux de 1 ate numDeTermos passo 1) faca
+		res = num1 + num2;
+		num1 = num2;
+		num2 = res;
+	fimPara
+	escreval(res / (num1));
+	escreval((1 + raizQuadrada(5))/2);
+
+fimPrincipal

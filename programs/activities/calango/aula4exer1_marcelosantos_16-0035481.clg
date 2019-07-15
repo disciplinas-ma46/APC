@@ -1,0 +1,29 @@
+algoritmo calculoFatorial;
+// Síntese
+//  Objetivo:  Ler um número e calcular o seu fatorial.
+//  Entrada :  Um número inteiro.
+//  Saída   :  O fatorial do número.
+
+
+principal
+	// Declarações
+	inteiro numero, resultado, auxiliar;
+
+	// Instruções
+	escreva("Digite um número inteiro positivo: ");
+	leia(numero);
+	limpaTela();
+	se (numero < 0) entao
+		escreva("Valor inválido por ser negativo");
+	senao
+		se (numero == 0) entao
+			escreva("O fatorial de 0 é 1");
+		senao
+			resultado = 1;
+			para (auxiliar de 1 ate numero passo 1) faca
+				resultado = resultado * auxiliar;
+			fimPara
+			escreva("O fatorial de ", numero, " é ", resultado);
+		fimSe
+	fimSe
+fimPrincipal

@@ -1,0 +1,22 @@
+algoritmo mediaDeTresNumeros;
+// Síntese
+//  Objetivo:  pedir ao usuário que digite três valores reais e exibir a média desses valores
+//  Entrada : três variáveis reais
+//  Saída   : a média dos três valores
+
+
+principal
+	// Declarações
+real numero1, numero2, numero3, media;
+
+	// Instruções
+escreval("digite um valor real para o primeiro número");
+leia(numero1);
+escreval("digite um valor real para o segundo número");
+leia(numero2);
+escreval("digite um valor real para o terceiro número");
+leia(numero3);
+
+media = (numero1 + numero2 + numero3) / 3;
+escreval("a média aproximada desses três valores é ",media::4);
+fimPrincipal

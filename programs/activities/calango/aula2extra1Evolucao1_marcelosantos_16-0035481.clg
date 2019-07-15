@@ -1,0 +1,37 @@
+algoritmo impostoRenda;
+// Síntese
+//  Objetivo: Calcular quanto o usuario vai pagar de imposto de renda de acordo com sua renda
+//  Entrada : Renda dessa pessoa em  2017
+//  Saída   : Valor do Imposto de Renda
+
+
+principal
+	// Declarações
+	real renda;
+
+	// Instruções
+	escreva("informe a renda obtida no ano de 2017: ");
+	leia(renda);
+	limpaTela();
+	se (renda < 0) entao
+		escreva("Valor de renda inválido.");
+	senao
+		se (renda <= 22847.76) entao
+			escreva("Você está isento de pagar o imposto de renda");
+		senao
+			se (renda <= 33919.80) entao
+				escreva("O valor do imposto de renda é R$ ", (renda * 0.075 - 1713.58):3:2,".");
+			senao
+				se (renda <= 45012.60) entao
+					escreva("O valor do imposto de renda é R$ ", (renda * 0.15 - 4257.57):3:2,".");
+				senao
+					se (renda <= 55976.16) entao
+						escreva("O valor do imposto de renda é R$ ", (renda * 0.225 - 7633.51):3:2,".");
+					senao
+						escreva("O valor do imposto de renda é R$ ", (renda * 0.275 - 10432.32):3:2,".");
+					fimSe
+				fimSe
+			fimSe
+		fimSe
+	fimSe
+fimPrincipal

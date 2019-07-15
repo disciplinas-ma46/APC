@@ -1,0 +1,21 @@
+algoritmo calculoSerie;
+// Síntese
+//  Objetivo:  Calcular a soma dos 30 primeiros termos de uma série
+//  Entrada :  Nenhuma
+//  Saída   :  O resultado da soma
+
+
+principal
+	// Declarações
+	inteiro auxiliar;
+	real resultado;
+
+	// Instruções
+	resultado = 0;
+	para(auxiliar de 0 ate 29 passo 1) faca
+		resultado = resultado + exp(-1,auxiliar)*((480 - 5 * auxiliar)/(10 + auxiliar));
+	fimPara
+	escreval("A soma dos 30 primeiros termos da série ");
+	escreval("       ( 480/10 - 475/11 + 470/12 - 465/13 + ... )");
+	escreval("tem o valor de:  ",resultado:4:3);
+fimPrincipal

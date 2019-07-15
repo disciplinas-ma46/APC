@@ -1,0 +1,17 @@
+algoritmo areaCircunferencia;
+// Síntese
+//  Objetivo:  Calcular a área de uma Circunfêrencia com a fórmula 3.14 x raio^2
+//  Entrada :  valor real (raio)
+//  Saída   :  área da Circunfêrencia com base no raio
+
+
+principal
+	// Declarações
+inteiro raio, area;
+
+	// Instruções
+escreva("digite um valor(real) para o raio da circunfêrencia: ");
+leia(raio);
+area = 3.14 * raio * raio;
+escreval("essa circunfêrencia tem ", area," unidades de área");
+fimPrincipal

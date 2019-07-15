@@ -1,0 +1,125 @@
+algoritmo aula6exer6;
+// Síntese
+//  Objetivo:  saber quais os três empregados mais recentes
+//  Entrada : matrículas e tempo em meses que estão na empresa
+//  Saída   : os três funcionários mais recentes
+
+
+principal
+	// Declarações
+	inteiro tamanhoTotal; 	//CONSTANTE
+	inteiro funcionarios, aux, matricula[100], meses[100];
+	caracter controle;
+	logico continuar;
+
+	// Instruções
+	tamanhoTotal = 100;
+	funcionarios = 0;
+	continuar = verdadeiro;
+	enquanto (continuar e (funcionarios < tamanhoTotal)) faca
+		escreva("Digite a matrícula do ",funcionarios+1,"º funcionário ou '0' para terminar cadastro: ");
+		leia(matricula[funcionarios]);
+		se(matricula[funcionarios] != 0)entao
+			se(funcionarios < tamanhoTotal)entao
+				validaDados(matricula, funcionarios);
+				escreval("Digite quantos meses o ",funcionarios+1,"º funcionário está na empresa: ");
+				leia(meses[funcionarios]);
+				validaDados(meses, funcionarios);
+				funcionarios = funcionarios + 1;
+			senao
+				continuar = falso;
+				escreval("Todos os ",tamanhoTotal," funcionários foram cadastrados!");
+				escreval("Digite quanquer tecla para apresentar os resultados:");
+			fimSe
+		senao
+			continuar = falso;
+			escreval("Cadastro encerrado! Digite quanquer tecla para apresentar os resultados:");
+			leiaCaracter(controle);
+		fimSe
+	fimEnquanto
+	limpaTela();
+	se(funcionarios >= 3)entao
+		ordenaDados(funcionarios,meses, matricula);
+		escreval("Os 3 funcionários mais recentes serão listados abaixo : ");
+		escreval("Matrícula | Meses trabalhados");
+		para (aux de 0 ate 2 passo 1) faca
+			escreval(matricula[aux],"           ",meses[aux]);
+		fimPara
+	senao
+		se(funcionarios == 0)entao
+			escreval("Nenhum funcionário foi cadastrado!");
+		senao
+			escreval("Menos que 3 funcionários foram cadastrados, sendo os mais recentes: ");
+			escreval("Matrícula | Meses trabalhados");
+			para (aux de 0 ate funcionarios-1 passo 1) faca
+				escreval(matricula[aux],"           ",meses[aux]);
+			fimPara
+		fimSe
+	fimSe
+fimPrincipal
+
+//==================  SUBALGORITMOS  =========================
+
+// Síntese
+//  Objetivo:  Validar Dados do funcionário
+//  Parâmetros: Matrículas ou número de meses trabalhados e de qual funcionário é a matrícula
+//  Retorno  : Nenhum
+procedimento validaDados(inteiro DadosFuncionarios[], inteiro funcionarios)
+	//Declarações locais
+	inteiro contador;
+	logico dadosInvalido;
+	//Instruções
+	dadosInvalido = verdadeiro;
+	enquanto (dadosInvalido) faca
+		enquanto(DadosFuncionarios[funcionarios] <= 0)faca
+			escreval("");
+			escreva("Valor inválida. Digite um valor maior que 0: ");
+			leia(DadosFuncionarios[funcionarios]);
+		fimEnquanto
+		contador = 0;
+		enquanto((DadosFuncionarios[funcionarios] != DadosFuncionarios[contador]) e (contador < funcionarios))faca
+			contador = contador + 1;
+		fimEnquanto
+		se (contador != funcionarios) entao
+			escreval("");
+			escreva("Inálido! Digite um valor diferente: ");
+			leia(DadosFuncionarios[funcionarios]);
+		senao
+			dadosInvalido = falso;
+		fimSe
+	fimEnquanto
+	limpaTela();
+fimProcedimento
+
+// Síntese
+//  Objetivo:  Ordena os Dados do funcionário com meses em ordem crescente
+//  Parâmetros: Matrícula e meses na empresa do funcionário
+//  Retorno  : Sem retorno
+procedimento ordenaDados(inteiro funcionarios,inteiro meses[], inteiro matricula[])
+	//Declarações locais
+	inteiro aux, indice;
+	//Instruções
+	para(aux de 0 ate funcionarios-2 passo 1)faca
+		para(indice de aux+1 ate funcionarios-1 passo 1)faca
+			se(meses[aux] > meses[indice])entao
+				trocaDados(meses, aux, indice);
+				trocaDados(matricula, aux, indice);
+			fimSe
+		fimPara
+	fimPara
+fimProcedimento
+
+// Síntese
+//  Objetivo:  Troca posição dos Dados de dois funcionários
+//  Parâmetros: Matrícula ou meses na empresa e quem são os dois funcionários para troca
+//  Retorno  : Sem retorno
+procedimento trocaDados(inteiro dados[], inteiro funcionario1, inteiro funcionario2)
+	//Declarações locais
+	inteiro auxiliarTroca;
+
+	//Instruções
+	auxiliarTroca = dados[funcionario1];
+	dados[funcionario1] = dados[funcionario2];
+	dados[funcionario2] = auxiliarTroca;
+fimProcedimento
+

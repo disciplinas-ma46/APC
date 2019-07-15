@@ -1,0 +1,37 @@
+algoritmo triangulo;
+// Síntese
+//  Objetivo:  Verificar se três valores podem ser lados de um triângulo.
+//  Entrada : Três valores reais.
+//  Saída   : Mensagem informando se os valores podem ou não ser lados de um triângulo.
+
+
+principal
+	// Declarações
+	real ladoA, ladoB, ladoC;
+
+	// Instruções
+	escreva("Informe o valor do lado A do triângulo: ");
+	leia(ladoA);
+	escreva("Informe o valor do lado B do triângulo: ");
+	leia(ladoB);
+	escreva("Informe o valor do lado C do triângulo: ");
+	leia(ladoC);
+	escreval("");
+	se (ladoA <= 0 ou ladoB <= 0 ou ladoC <= 0) entao
+		escreval("Valor de um ou mais lados do triângulo inválido por ser negativo ou zero!");
+	senao
+		se (ladoA >= ladoB + ladoC) entao
+			escreval("O triângulo não pode ser formado pois o lado A é maior ou igual a soma dos outros dois lados");
+		senao
+			se (ladoB >= ladoA + ladoC) entao
+				escreval("O triângulo não pode ser formado pois o lado B é maior ou igual a soma dos outros dois lados");
+			senao
+				se (ladoC >= ladoA + ladoB) entao
+					escreval("O triângulo não pode ser formado pois o lado C é maior ou igual a soma dos outros dois lados");
+				senao
+					escreval("O triângulo pode ser formado, nenhum lado é maior ou igual a soma dos outros dois lados");
+				fimSe
+			fimSe
+		fimSe
+	fimSe
+fimPrincipal
